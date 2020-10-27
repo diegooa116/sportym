@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "sportym1": {
+      "hosting": {
+        "sportym": [
+          "sportym1"
+        ]
+      }
+    }
+  }
+}

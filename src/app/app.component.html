@@ -1,0 +1,12 @@
+<div *ngIf="usuario && !simboloCargando; else showLogin">
+  <app-encabezado></app-encabezado>
+  <router-outlet></router-outlet>
+</div>
+
+<ng-template #showLogin>
+  <div *ngIf="simboloCargando" class="text-center"> 
+    <div class="lds-circle"><div></div></div>
+  </div>
+  <app-login *ngIf="!simboloCargando"></app-login>
+  <!--<button (click)="login()">Login</button>-->
+</ng-template>
