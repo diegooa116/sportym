@@ -14,7 +14,12 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AgregarClienteComponent } from './agregar-cliente/agregar-cliente.component';
 import { AngularFireStorageModule } from '@angular/fire/storage';
-
+import { ListadoClientesComponent } from './listado-clientes/listado-clientes.component';
+import { HttpClientModule} from  '@angular/common/http';
+import { RegisterComponent } from './register/register.component';
+import { PreciosComponent } from './precios/precios.component';
+import { InscripcionComponent } from './inscripcion/inscripcion.component';
+import { SeleccionarClienteComponent } from './seleccionar-cliente/seleccionar-cliente.component'
 
 
 @NgModule({
@@ -23,7 +28,12 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
     LoginComponent,
     EncabezadoComponent,
     ClientesComponent,
-    AgregarClienteComponent
+    AgregarClienteComponent,
+    ListadoClientesComponent,
+    RegisterComponent,
+    PreciosComponent,
+    InscripcionComponent,
+    SeleccionarClienteComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +43,8 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
     ReactiveFormsModule,
     FormsModule,
     AngularFireStorageModule,
-    AngularFireModule.initializeApp(environment.firebase)
+    AngularFireModule.initializeApp(environment.firebase),
+    HttpClientModule
   ],
   providers: [
     AngularFireModule,

@@ -14,8 +14,8 @@ export class LoginComponent implements OnInit {
   constructor(private creadorFormulario: FormBuilder, public auth: AngularFireAuth) { }
 
   ngOnInit(): void {
-    this.formularioLogin = this.creadorFormulario.group({ //Con esto logramos que hasta que no se llene el formulario no se habilite el boton para enviarlo
-      email:['',Validators.compose([
+    this.formularioLogin = this.creadorFormulario.group({ 
+      email:['',Validators.compose([ //Con esto logramos que hasta que no se llene el formulario no se habilite el boton para enviarlo
         Validators.required, Validators.email
       ])],
       password:['',Validators.required]
@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
   ingresarUsuario(){
     if(this.formularioLogin.valid){
       this.datosCorrectos = true;
-      this.auth.signInWithEmailAndPassword(this.formularioLogin.value.email,this.formularioLogin.value.password).then((usuario)=>{
+      this.auth.signInWithEmailAndPassword(this.formularioLogin.value.email,this.formularioLogin.value.password).then((usuario)=>{//Pasamos los parametros caputados en email y password
         console.log(usuario); 
       }).catch((error)=>{
         this.datosCorrectos = false;

@@ -1,0 +1,230 @@
+<div class="container mt-5">
+    <h3>Listado de los clientes</h3>
+    <div class="container">
+        <table class="table table-dark">
+            <thead>
+              <tr>
+                <th class="text-center" scope="col" >id</th>
+                <th class="text-center"scope="col">Nombre</th>
+                <th class="text-center"scope="col">Apellido</th>
+                <th class="text-center" scope="col">Celular</th>
+                <th class="text-center" scope="col">Cédula</th>
+                <th class="text-center" scope="col">E-mail</th>
+                <th class="text-center" scope="col">Cumpleaños</th>
+                <th class="text-center" scope="col">1</th>
+                <th class="text-center" scope="col">2</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let cliente of clientes">
+                <th scope="row" class="text-center">{{cliente.id}}</th>
+                <td class="text-center">{{cliente.nombre}}</td>
+                <td class="text-center">{{cliente.apellido}}</td>
+                <td class="text-center">{{cliente.celular}}</td>
+                <td class="text-center">{{cliente.cedula}}</td>
+                <td class="text-center">{{cliente.email}}</td>
+                <td class="text-center">{{cliente.fechaNacimiento}}</td>
+                <td class="text-center">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop" (click)="selectCliente(cliente)">
+                        Modificar
+                    </button>
+  
+                    <!-- Modal -->
+                    <div class="modal fade " id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
+                        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="staticBackdropLabel">Modificar Cliente</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <!--Inicio del formulario de modificar-->
+                                    <div class="container mt-5">
+                                        <form [formGroup]="formularioagregarCliente" action="">
+                                            <div class = "row">
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="">Nombre</label>
+                                                        <input type="text" class="form-control" formControlName="nombre" placeholder="Digite un nombre" [(ngModel)]="datosCliente.nombre">
+                                                        <div *ngIf="formularioagregarCliente.controls['nombre'].invalid && formularioagregarCliente.controls['nombre'].dirty" class="alert alert-danger" role="alert">
+                                                            <span *ngIf="formularioagregarCliente.controls['nombre'].errors.required">El nombre es requerido</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="">Apellido</label>
+                                                        <input type="text" class="form-control" formControlName="apellido" placeholder="Digite un apellido" [(ngModel)]="datosCliente.apellido">
+                                                        <div *ngIf="formularioagregarCliente.controls['apellido'].invalid && formularioagregarCliente.controls['apellido'].dirty" class="alert alert-danger" role="alert">
+                                                            <span *ngIf="formularioagregarCliente.controls['apellido'].errors.required">El apellido es requerido</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="">Celular</label>
+                                                        <input type="tel" class="form-control" formControlName="celular" placeholder="Digite su número de celular" [(ngModel)]="datosCliente.celular">
+                                                        <div *ngIf="formularioagregarCliente.controls['celular'].invalid && formularioagregarCliente.controls['celular'].dirty" class="alert alert-danger" role="alert">
+                                                            <span *ngIf="formularioagregarCliente.controls['celular'].errors.required">El celular es requerido</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="">Cédula</label>
+                                                        <input type="text" class="form-control" formControlName="cedula" placeholder="Digite su cédula" [(ngModel)]="datosCliente.cedula">
+                                                        <div *ngIf="formularioagregarCliente.controls['cedula'].invalid && formularioagregarCliente.controls['cedula'].dirty" class="alert alert-danger" role="alert">
+                                                            <span *ngIf="formularioagregarCliente.controls['cedula'].errors.required">La cédula es requerida</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="">Correo electronico</label>
+                                                        <input type="text" class="form-control" formControlName="email" placeholder="Digite su correo" [(ngModel)]="datosCliente.email">
+                                                        <div *ngIf="formularioagregarCliente.controls['email'].invalid && formularioagregarCliente.controls['email'].dirty" class="alert alert-danger" role="alert">
+                                                            <span *ngIf="formularioagregarCliente.controls['email'].errors.required">El correo es requerido</span>
+                                                            <span *ngIf="formularioagregarCliente.controls['email'].errors.email">El correo es incorrecto</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="">Fecha de nacimiento</label>
+                                                        <input type="date" class="form-control" formControlName="fechaNacimiento" placeholder="Digite su fecha de nacimiento"  [(ngModel)]="datosCliente.fechaNacimiento">
+                                                        <div *ngIf="formularioagregarCliente.controls['fechaNacimiento'].invalid && formularioagregarCliente.controls['fechaNacimiento'].dirty" class="alert alert-danger" role="alert">
+                                                            <span *ngIf="formularioagregarCliente.controls['fechaNacimiento'].errors.required">La fecha de nacimiento es requerida</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!--Fin del formulario de modificar-->
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                    <button (click)="modificarCliente()" [disabled]="formularioagregarCliente.invalid" type="button" class="btn btn-primary" data-dismiss="modal">Modificar</button>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td><!--Aquí termina el modal-->
+                <td>
+                    <!--Aquí inicia la opcion eliminar-->
+                    <!-- Button trigger modal -->
+<button type="button" class="btn btn-danger" (click)="selectCliente(cliente)" data-toggle="modal" data-target="#exampleModal">
+    Eliminar
+  </button>
+  
+  <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Eliminar Cliente</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h4>¿Estás seguro que deseas eliminar al cliente?</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button (click)="eliminarCliente()" type="button" class="btn btn-danger" data-dismiss="modal">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>
+                    
+                    <!--Aquí Termina la opcion eliminar-->
+                </td>
+                
+              </tr>
+            </tbody>
+          </table>
+    </div>
+</div>
+
+<!--Parte del método PUT
+
+    Nombre<input type="text" [(ngModel)]="datosCliente.nombre">
+    Apellido<input type="text" [(ngModel)]="datosCliente.apellido">
+    Celular<input type="text" [(ngModel)]="datosCliente.celular">
+    Cédula<input type="text" [(ngModel)]="datosCliente.cedula">
+    Email<input type="text" [(ngModel)]="datosCliente.email">
+    Fecha de nacimiento<input type="text" [(ngModel)]="datosCliente.fechaNacimiento">
+    <button (click)="crearCliente()">Crear</button>
+    <button (click)="modificarCliente()">Modificar</button>
+    <button (click)="eliminarCliente()">Eliminar</button>-->
+<!--
+    <div class="container mt-5">
+      <form [formGroup]="formularioagregarCliente" action="">
+          <div class = "row">
+              <div class="col-sm-6">
+                  <div class="form-group">
+                      <label for="">Nombre</label>
+                      <input type="text" class="form-control" formControlName="nombre" placeholder="Digite un nombre" [(ngModel)]="datosCliente.nombre">
+                      <div *ngIf="formularioagregarCliente.controls['nombre'].invalid && formularioagregarCliente.controls['nombre'].dirty" class="alert alert-danger" role="alert">
+                          <span *ngIf="formularioagregarCliente.controls['nombre'].errors.required">El nombre es requerido</span>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-sm-6">
+                  <div class="form-group">
+                      <label for="">Apellido</label>
+                      <input type="text" class="form-control" formControlName="apellido" placeholder="Digite un apellido" [(ngModel)]="datosCliente.apellido">
+                      <div *ngIf="formularioagregarCliente.controls['apellido'].invalid && formularioagregarCliente.controls['apellido'].dirty" class="alert alert-danger" role="alert">
+                          <span *ngIf="formularioagregarCliente.controls['apellido'].errors.required">El apellido es requerido</span>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-sm-6">
+                  <div class="form-group">
+                      <label for="">Celular</label>
+                      <input type="tel" class="form-control" formControlName="celular" placeholder="Digite su número de celular" [(ngModel)]="datosCliente.celular">
+                      <div *ngIf="formularioagregarCliente.controls['celular'].invalid && formularioagregarCliente.controls['celular'].dirty" class="alert alert-danger" role="alert">
+                          <span *ngIf="formularioagregarCliente.controls['celular'].errors.required">El celular es requerido</span>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-sm-6">
+                  <div class="form-group">
+                      <label for="">Cédula</label>
+                      <input type="text" class="form-control" formControlName="cedula" placeholder="Digite su cédula" [(ngModel)]="datosCliente.cedula">
+                      <div *ngIf="formularioagregarCliente.controls['cedula'].invalid && formularioagregarCliente.controls['cedula'].dirty" class="alert alert-danger" role="alert">
+                          <span *ngIf="formularioagregarCliente.controls['cedula'].errors.required">La cédula es requerida</span>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-sm-6">
+                  <div class="form-group">
+                      <label for="">Correo electronico</label>
+                      <input type="text" class="form-control" formControlName="email" placeholder="Digite su correo" [(ngModel)]="datosCliente.email">
+                      <div *ngIf="formularioagregarCliente.controls['email'].invalid && formularioagregarCliente.controls['email'].dirty" class="alert alert-danger" role="alert">
+                          <span *ngIf="formularioagregarCliente.controls['email'].errors.required">El correo es requerido</span>
+                          <span *ngIf="formularioagregarCliente.controls['email'].errors.email">El correo es incorrecto</span>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-sm-6">
+                  <div class="form-group">
+                      <label for="">Fecha de nacimiento</label>
+                      <input type="date" class="form-control" formControlName="fechaNacimiento" placeholder="Digite su fecha de nacimiento"  [(ngModel)]="datosCliente.fechaNacimiento">
+                      <div *ngIf="formularioagregarCliente.controls['fechaNacimiento'].invalid && formularioagregarCliente.controls['fechaNacimiento'].dirty" class="alert alert-danger" role="alert">
+                          <span *ngIf="formularioagregarCliente.controls['fechaNacimiento'].errors.required">La fecha de nacimiento es requerida</span>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </form>
+  </div>-->
+  
+    
+    
