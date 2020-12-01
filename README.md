@@ -1,5 +1,12 @@
 # Sportym
 
+¿Qué es Sportym?
+
+SPORTYM es un sistema de información con el objetivo de realizar la gestión de un gimnasio. Este software permite que el dueño del GYM tenga un usuario y una vez inicie sesión, cuenta con múltiples opciones como: agregar, ver, modificar y eliminar un cliente. Además, establecer un tipo de membresía según el cliente lo prefiera, es decir, el interesado tiene la oportunidad de pagar un plan de entrenamiento diario, semanal, mensual o anual. Adicional a esa funcionalidad, el propietario del establecimiento cobra el impuesto IVA a ese pago. Como valor añadido, SPORTYM genera un gráfico donde se representa el tipo de membresía que ha sido más acogida por los clientes, esto con el fin de que a partir de esta información el empresario analice la situación y tome buenas decisiones para el futuro de su negocio.
+
+#Integrantes: Daniela Lozano Amaya - Diego Fernando Ochoa Acosta
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.3.
 
 ## Development server
