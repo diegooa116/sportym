@@ -1,42 +1,71 @@
 <div class="container mt-5">
-   <div class="row">
-       <div class="col-sm-8">
-            <h4>Precios</h4>
-            <ul *ngFor="let precio of precios">
-                <li (click)="selectPrecio(precio)">{{precio.nombre}}</li>
-                <li>{{precio.costo}}</li>
-                <li>{{precio.duracion}}</li>
-                <li>{{precio.tipoDuracion}}</li>
-            </ul>
-       </div>
-       <div class="col-sm-4">
-            <h4>Agregar/Editar</h4>
-            <form [formGroup]="formularioPrecio">
-                <div class="form-group">
-                    <label for="">Nombre</label>
-                    <input formControlName="nombre"type="text" class="form-control" [(ngModel)]="datosPrecio.nombre">
-                </div>
-                <div class="form-group">
-                    <label for="">Costo</label>
-                    <input formControlName="costo"type="number" class="form-control" [(ngModel)]="datosPrecio.costo">
-                </div>
-                <div class="form-group">
-                    <label for="">Duración</label>
-                    <input formControlName="duracion" type="number" class="form-control" [(ngModel)]="datosPrecio.duracion">
-                </div>
-                <div class="form-group">
-                    <label for="">Tipo de duración</label>
-                    <select formControlName="tipoDuracion" name="" id="" class="form-control" [(ngModel)]="datosPrecio.tipoDuracion">
-                        <option value="1" >Día</option>
-                        <option value="2" >Semana</option>
-                        <option value="3" >Quincena</option>
-                        <option value="4" >Mes</option>
-                        <option value="5" >Año</option>
-                    </select>
-                </div>
-                <button  (click)="crearPrecio()"[disabled]="formularioPrecio.invalid" class="btn btn-primary" >Agregar</button>
-                <button  (click)="modificarPrecio()" [disabled]="formularioPrecio.invalid" class="btn btn-danger">Editar</button>
-            </form>
+    <div class="row">
+        <div class="col-sm-6">
+             <h4>Precios</h4>
+             <!--Inicio de tabla para precios-->
+             <table class="table table-dark">
+                 <thead>
+                   <tr >
+                     <th class="text-center" scope="col">Nombre membresía</th>
+                     <th class="text-center" scope="col">Costo</th>
+                     <th class="text-center" scope="col">Duración</th>
+                     <th class="text-center" scope="col">Tipo de duración</th>
+                   </tr>
+                 </thead>
+                 <tbody>
+                   <tr *ngFor="let precio of precios" [ngSwitch]="precio.tipoDuracion">
+                     <td (click)="selectPrecio(precio)" class="text-center">{{precio.nombre}}</td>
+                     <td class="text-center">{{precio.costo}}</td>
+                     <td class="text-center">{{precio.duracion}}</td>
+                     <td class="text-center" *ngSwitchCase="1">Día</td>
+                     <td class="text-center" *ngSwitchCase="2">Semana</td>
+                     <td class="text-center" *ngSwitchCase="3">Mes</td>
+                     <td class="text-center" *ngSwitchCase="4">Año</td>
+                     <td><button (click)="selectPrecio(precio)"class="btn btn-primary">Modificar</button></td>
+                     
+                   </tr>
+                 </tbody>
+               </table>
+             <!--Fin de tabla para precios-->
+            <!-- <ul *ngFor="let precio of precios">
+                 <li (click)="selectPrecio(precio)">{{precio.nombre}}</li>
+                 <li>{{precio.costo}}</li>
+                 <li>{{precio.duracion}}</li>
+                 <li>{{precio.tipoDuracion}}</li>
+                 
+             </ul>-->
+ 
         </div>
-   </div> 
-</div>
+        <div class="col-sm-4">
+             <h4>Agregar/Editar</h4>
+             <form [formGroup]="formularioPrecio">
+                 <div class="form-group">
+                     <label for="">Nombre</label>
+                     <input formControlName="nombre"type="text" class="form-control" [(ngModel)]="datosPrecio.nombre">
+                 </div>
+                 <div class="form-group">
+                     <label for="">Costo</label>
+                     <input formControlName="costo"type="number" class="form-control" [(ngModel)]="datosPrecio.costo">
+                 </div>
+                 <div class="form-group">
+                     <label for="">Duración</label>
+                     <input formControlName="duracion" type="number" class="form-control" [(ngModel)]="datosPrecio.duracion">
+                 </div>
+                 <div class="form-group">
+                     <label for="">Tipo de duración</label>
+                     <select formControlName="tipoDuracion" class="form-control" [(ngModel)]="datosPrecio.tipoDuracion">
+                         <option value="1" >Día</option>
+                         <option value="2" >Semana</option>
+                         <option value="3" >Mes</option>
+                         <option value="4" >Año</option>
+                     </select>
+                 </div>
+                 <button  *ngIf="esAgregar==true" (click)="crearPrecio()"[disabled]="formularioPrecio.invalid" class="btn btn-primary">Agregar</button>
+                 <button  *ngIf="esEditar==true" (click)="modificarPrecio()" [disabled]="formularioPrecio.invalid" class="btn btn-danger">Editar</button>
+                 &nbsp;<!--Da un pequeño espacio a la derecha-->
+                 <button type="reset" class="btn btn-secondary">Limpiar</button>
+ 
+             </form>
+         </div>
+    </div> 
+ </div>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiListadoPreciosService } from '../api-listado-precios.service';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-precios',
   templateUrl: './precios.component.html',
@@ -14,6 +14,7 @@ export class PreciosComponent implements OnInit {
   id;
   datosPrecio;
   esEditar: boolean = false;
+  esAgregar:boolean = true;
   constructor(private api:ApiListadoPreciosService,private fb: FormBuilder) { 
     this.getPrecios();
     this.datosPrecio = {nombre:'',
@@ -23,7 +24,7 @@ export class PreciosComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.formularioPrecio=this.fb.group({
+    this.formularioPrecio=this.fb.group({ 
       nombre:['',Validators.required],
       costo:['', Validators.required],
       duracion:['',Validators.required],
@@ -43,7 +44,8 @@ export class PreciosComponent implements OnInit {
   }
 
   selectPrecio=(precio)=>{
-    //this.esEditar = true;
+    this.esAgregar = false;
+    this.esEditar = true;
     this.api.obtenerunPrecio(precio.id).subscribe((data:any)=>{
       this.datosPrecio = data;
       console.log(data)
@@ -55,6 +57,7 @@ export class PreciosComponent implements OnInit {
   }
 
   modificarPrecio = () =>{
+    this.esEditar = false;
     this.api.modificarunPrecio(this.datosPrecio).subscribe((data:any)=>{
       //console.log(data);
       this.datosPrecio = data;
@@ -64,15 +67,28 @@ export class PreciosComponent implements OnInit {
       console.log(error);
     }
     );
+    this.esAgregar = true;
   }
 
   crearPrecio = () =>{
     this.api.crearunPrecio(this.datosPrecio).subscribe((data:any)=>{
       //console.log(data);
       this.datosPrecio = data;
+      Swal.fire({// Mostramos una ventanita al cliente que se agregó un usuario
+        title: 'Agregado',
+        text: 'Se agregó satisfactoriamente',
+        icon: 'success',
+        confirmButtonText: 'Ok'
+      })
       this.getPrecios();
     },
     error=> {
+      Swal.fire({// Mostramos una ventanita para mostrarle al cliente que ocurrió un error
+        title: 'Error',
+        text: 'No se ha podido agregar un precio',
+        icon: 'error',
+        confirmButtonText: 'Ok'
+      })
       console.log(error);
     }
     );

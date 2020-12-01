@@ -13,9 +13,9 @@ export class LoginComponent implements OnInit {
   mensajeError:string;
   constructor(private creadorFormulario: FormBuilder, public auth: AngularFireAuth) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {// Validaciones para los input email y password donde el email es requerido además, de ser de tipo email.El password es solo requerido
     this.formularioLogin = this.creadorFormulario.group({ 
-      email:['',Validators.compose([ //Con esto logramos que hasta que no se llene el formulario no se habilite el boton para enviarlo
+      email:['',Validators.compose([ 
         Validators.required, Validators.email
       ])],
       password:['',Validators.required]
@@ -23,19 +23,19 @@ export class LoginComponent implements OnInit {
   }
 
   ingresarUsuario(){
-    if(this.formularioLogin.valid){
-      this.datosCorrectos = true;
+    if(this.formularioLogin.valid){// Siempre que el formulario de login sea válido
+      this.datosCorrectos = true;// La variable booleana es verdadera
       this.auth.signInWithEmailAndPassword(this.formularioLogin.value.email,this.formularioLogin.value.password).then((usuario)=>{//Pasamos los parametros caputados en email y password
-        console.log(usuario); 
-      }).catch((error)=>{
-        this.datosCorrectos = false;
-        this.mensajeError = error.message;
+        console.log(usuario); // una vez termine permitirá el ingreso (si es correcto) o lo denegara mostrando un mensaje de error
+      }).catch((error)=>{// En caso de error 
+        this.datosCorrectos = false; //La variable booleana es falsa
+        this.mensajeError = error.message;// La variable mensajeError es igual a error.message
       })
-    }else{
-      this.datosCorrectos = false;
-      this.mensajeError = "Revisa que los datos sean los correctos"
+    }else{//Si el formulario es invalido 
+      this.datosCorrectos = false;//La variable booleana es falsa
+      this.mensajeError = "Revisa que los datos sean los correctos"//Mensaje en caso de que el formulario sea falso
     }
-    
+
 
   }
 

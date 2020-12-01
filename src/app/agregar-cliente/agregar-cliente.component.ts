@@ -25,21 +25,20 @@ export class AgregarClienteComponent implements OnInit {
 
   ngOnInit(): void {
     this.formularioagregarCliente=this.fb.group({//Validaciones para los inputs
-      nombre:['',Validators.required],
-      apellido:['',Validators.required],
-      celular:['',Validators.required],
-      cedula:['',Validators.required],
-      email:['',Validators.compose([
+      nombre:['',Validators.required],   // Para valir que el input nombre es requerido
+      apellido:['',Validators.required], // Para valir que el input apellido es requerido
+      celular:['',Validators.required],  // Para valir que el input celular es requerido
+      cedula:['',Validators.required],   // Para valir que el input celular es requerido
+      email:['',Validators.compose([    // Para validar que el input email es requerido y sea de tipo email 
         Validators.required, Validators.email
       ])],
-      fechaNacimiento:['',Validators.required]
+      fechaNacimiento:['',Validators.required]  // Para validar que el input fechaNacimiento es requerido
     });
   }
   crearCliente=()=>{
     this.api.crearunCliente(this.datosCliente).subscribe((data:any)=>{
-      //console.log(data);
-      this.clientes.push(data);
-      Swal.fire({// Mostramos una ventanita para mostrarle al cliente que se agregó un usuario
+      this.clientes.push(data);// Para agregar un nuevo cliente al array clientes cuando sea llamada la función
+      Swal.fire({// Mostramos una ventanita al cliente que se agregó un usuario
         title: 'Agregado',
         text: 'Se agregó satisfactoriamente',
         icon: 'success',

@@ -25,17 +25,17 @@ export class ListadoClientesComponent /*implements OnInit */{
 
   ngOnInit(): void {
     this.formularioagregarCliente=this.fb.group({//Validaciones para los inputs
-      nombre:['',Validators.required],
-      apellido:['',Validators.required],
-      celular:['',Validators.required],
-      cedula:['',Validators.required],
-      email:['',Validators.compose([
+      nombre:['',Validators.required], //Validacion para el nombre es requerida
+      apellido:['',Validators.required], //Validacion para el apellido es requerida
+      celular:['',Validators.required], //Validacion para el celular es requerida
+      cedula:['',Validators.required],  //Validacion para la cedula es requerida
+      email:['',Validators.compose([    //Validacion para el email es requerida y de tipo email
         Validators.required, Validators.email
       ])],
       fechaNacimiento:['',Validators.required]
     });
   }
-  getClientes= () =>{
+  getClientes= () =>{ //Obtenemos la informacion de clientes de la api en django 
     this.api.obtenerListadoClientes().subscribe((data:any)=>{
       console.log(data.results)
       this.clientes=data.results;
@@ -48,7 +48,7 @@ export class ListadoClientesComponent /*implements OnInit */{
   selectCliente = (cliente)=>{//Seleccionamos el id de los clientes en la tabla de listados de cliente
     //console.log(cliente.id);
     this.api.obtenerunCliente(cliente.id).subscribe((data:any)=>{
-      console.log(data);
+      //console.log(data);
       this.datosCliente = data;
     },
     error=> {
@@ -57,7 +57,7 @@ export class ListadoClientesComponent /*implements OnInit */{
     );
   }
 
-  modificarCliente=()=>{
+  modificarCliente=()=>{ // Modificar en la tabla clientes  la información que modifiquemos
     this.api.modificarunCliente(this.datosCliente).subscribe((data:any)=>{
       //console.log(data);
       //this.datosCliente = data;
@@ -80,7 +80,7 @@ export class ListadoClientesComponent /*implements OnInit */{
     );
   }*/
 
-eliminarCliente=()=>{
+eliminarCliente=()=>{ //Elimninamos los clientes de la api en Django
     this.api.eliminarunCliente(this.datosCliente.id).subscribe((data:any)=>{
       //console.log(data);
       this.getClientes();

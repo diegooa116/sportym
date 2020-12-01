@@ -11,8 +11,6 @@
                 <th class="text-center" scope="col">Cédula</th>
                 <th class="text-center" scope="col">E-mail</th>
                 <th class="text-center" scope="col">Cumpleaños</th>
-                <th class="text-center" scope="col">1</th>
-                <th class="text-center" scope="col">2</th>
               </tr>
             </thead>
             <tbody>
@@ -158,73 +156,3 @@
     Apellido<input type="text" [(ngModel)]="datosCliente.apellido">
     Celular<input type="text" [(ngModel)]="datosCliente.celular">
     Cédula<input type="text" [(ngModel)]="datosCliente.cedula">
-    Email<input type="text" [(ngModel)]="datosCliente.email">
-    Fecha de nacimiento<input type="text" [(ngModel)]="datosCliente.fechaNacimiento">
-    <button (click)="crearCliente()">Crear</button>
-    <button (click)="modificarCliente()">Modificar</button>
-    <button (click)="eliminarCliente()">Eliminar</button>-->
-<!--
-    <div class="container mt-5">
-      <form [formGroup]="formularioagregarCliente" action="">
-          <div class = "row">
-              <div class="col-sm-6">
-                  <div class="form-group">
-                      <label for="">Nombre</label>
-                      <input type="text" class="form-control" formControlName="nombre" placeholder="Digite un nombre" [(ngModel)]="datosCliente.nombre">
-                      <div *ngIf="formularioagregarCliente.controls['nombre'].invalid && formularioagregarCliente.controls['nombre'].dirty" class="alert alert-danger" role="alert">
-                          <span *ngIf="formularioagregarCliente.controls['nombre'].errors.required">El nombre es requerido</span>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-sm-6">
-                  <div class="form-group">
-                      <label for="">Apellido</label>
-                      <input type="text" class="form-control" formControlName="apellido" placeholder="Digite un apellido" [(ngModel)]="datosCliente.apellido">
-                      <div *ngIf="formularioagregarCliente.controls['apellido'].invalid && formularioagregarCliente.controls['apellido'].dirty" class="alert alert-danger" role="alert">
-                          <span *ngIf="formularioagregarCliente.controls['apellido'].errors.required">El apellido es requerido</span>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-sm-6">
-                  <div class="form-group">
-                      <label for="">Celular</label>
-                      <input type="tel" class="form-control" formControlName="celular" placeholder="Digite su número de celular" [(ngModel)]="datosCliente.celular">
-                      <div *ngIf="formularioagregarCliente.controls['celular'].invalid && formularioagregarCliente.controls['celular'].dirty" class="alert alert-danger" role="alert">
-                          <span *ngIf="formularioagregarCliente.controls['celular'].errors.required">El celular es requerido</span>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-sm-6">
-                  <div class="form-group">
-                      <label for="">Cédula</label>
-                      <input type="text" class="form-control" formControlName="cedula" placeholder="Digite su cédula" [(ngModel)]="datosCliente.cedula">
-                      <div *ngIf="formularioagregarCliente.controls['cedula'].invalid && formularioagregarCliente.controls['cedula'].dirty" class="alert alert-danger" role="alert">
-                          <span *ngIf="formularioagregarCliente.controls['cedula'].errors.required">La cédula es requerida</span>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-sm-6">
-                  <div class="form-group">
-                      <label for="">Correo electronico</label>
-                      <input type="text" class="form-control" formControlName="email" placeholder="Digite su correo" [(ngModel)]="datosCliente.email">
-                      <div *ngIf="formularioagregarCliente.controls['email'].invalid && formularioagregarCliente.controls['email'].dirty" class="alert alert-danger" role="alert">
-                          <span *ngIf="formularioagregarCliente.controls['email'].errors.required">El correo es requerido</span>
-                          <span *ngIf="formularioagregarCliente.controls['email'].errors.email">El correo es incorrecto</span>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-sm-6">
-                  <div class="form-group">
-                      <label for="">Fecha de nacimiento</label>
-                      <input type="date" class="form-control" formControlName="fechaNacimiento" placeholder="Digite su fecha de nacimiento"  [(ngModel)]="datosCliente.fechaNacimiento">
-                      <div *ngIf="formularioagregarCliente.controls['fechaNacimiento'].invalid && formularioagregarCliente.controls['fechaNacimiento'].dirty" class="alert alert-danger" role="alert">
-                          <span *ngIf="formularioagregarCliente.controls['fechaNacimiento'].errors.required">La fecha de nacimiento es requerida</span>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </form>
-  </div>-->
-  
-    
-    

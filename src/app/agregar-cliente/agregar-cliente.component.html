@@ -131,7 +131,9 @@
                 </div>
             </div>
             <!--<button (click)="crearCliente()">Crear</button>-->
-            <button (click)="crearCliente()"[disabled]="formularioagregarCliente.invalid"class="btn btn-secondary">Crear</button>
+            <button (click)="crearCliente()"[disabled]="formularioagregarCliente.invalid"class="btn btn-primary">Crear</button>
+            &nbsp;<!--Da un pequeño espacio a la derecha-->
+            <button type="reset" class="btn btn-secondary">Limpiar</button>
         </div>
     </form>
 </div>
